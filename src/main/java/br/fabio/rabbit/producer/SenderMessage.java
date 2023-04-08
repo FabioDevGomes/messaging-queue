@@ -1,4 +1,4 @@
-package br.fabio.rabbit;
+package br.fabio.rabbit.producer;
 
 
 import org.slf4j.Logger;
@@ -7,13 +7,15 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import br.fabio.rabbit.UserMessageConfig;
+
 
 @Component
-public class SendMessage implements CommandLineRunner{
+public class SenderMessage implements CommandLineRunner{
 	private final RabbitTemplate rabbitTemplate;
-	private static final Logger LOGGER = LoggerFactory.getLogger(SendMessage.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SenderMessage.class);
 	
-	public SendMessage(RabbitTemplate rabbitTemplate) {
+	public SenderMessage(RabbitTemplate rabbitTemplate) {
 		this.rabbitTemplate = rabbitTemplate;
 	}
 

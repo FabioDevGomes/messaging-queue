@@ -1,16 +1,13 @@
-package br.fabio.rabbit.receiver;
+package br.fabio.rabbit.consumer;
 
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import br.fabio.rabbit.UserMessageConfig;
 
 @Component
-public class ReceiverV2 {
+public class ReceiverListener {
 	
 //	@RabbitListener(
 //			bindings = @QueueBinding(value = @Queue(UserMessageConfig.queueName), 

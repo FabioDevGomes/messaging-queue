@@ -7,14 +7,17 @@ import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import br.fabio.rabbit.UserMessageConfig;
+
 @Component
 public class ReceiverV2 {
 	
-	@RabbitListener(
-			bindings = @QueueBinding(value = @Queue("spring-boot"), 
-			exchange = @Exchange("fabio-exchange-b"), 
-			key = "fabio.ampq.tes"))
-	public void processMessage(Message message, String object) {
+//	@RabbitListener(
+//			bindings = @QueueBinding(value = @Queue(UserMessageConfig.queueName), 
+//			exchange = @Exchange(name = UserMessageConfig.topicExchangeName), 
+//			key = UserMessageConfig.biding))
+	@RabbitListener(queues = UserMessageConfig.queueName)
+	public void processMessage(Message message, Object object) {
 		System.out.println("::::::::::: >> " + object);
 		
 	}

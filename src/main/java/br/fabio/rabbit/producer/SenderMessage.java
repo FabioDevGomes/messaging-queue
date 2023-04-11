@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import br.fabio.rabbit.UserMessageConfig;
+import br.fabio.rabbit.model.User;
 
 
 @Component
@@ -23,7 +24,16 @@ public class SenderMessage implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		LOGGER.info("::::::::::: Sending a message... ");
 		
-		rabbitTemplate.convertAndSend(UserMessageConfig.topicExchangeName, "fabio.ampq.teste", "****** Hello from RabbitMq! ******");
+		var user = getUser();
+		rabbitTemplate.convertAndSend(UserMessageConfig.topicExchangeName, "fabio.ampq.teste", user);
+	}
+
+	private User getUser() {
+		User user = new User();
+		user.setName("Fabio 1");
+		user.setPhone("112335");
+		user.setEmail("fabio@fabio.com");
+		return user;
 	}
 
 }

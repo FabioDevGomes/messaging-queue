@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import br.fabio.rabbit.UserMessageConfig;
 import br.fabio.rabbit.model.User;
-import br.fabio.rabbit.producer.SenderMessage;
 
 @Component
 public class ReceiverListener {

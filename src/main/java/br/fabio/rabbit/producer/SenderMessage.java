@@ -12,7 +12,7 @@ import br.fabio.rabbit.model.User;
 
 
 @Component
-public class SenderMessage implements CommandLineRunner{
+public class SenderMessage{
 	private final RabbitTemplate rabbitTemplate;
 	private static final Logger LOGGER = LoggerFactory.getLogger(SenderMessage.class);
 	
@@ -20,20 +20,9 @@ public class SenderMessage implements CommandLineRunner{
 		this.rabbitTemplate = rabbitTemplate;
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
+	public void sendMessage(User user) throws Exception {
 		LOGGER.info("::::::::::: Sending a message... ");
-		
-		var user = getUser();
 		rabbitTemplate.convertAndSend(UserMessageConfig.topicExchangeName, "fabio.ampq.teste", user);
-	}
-
-	private User getUser() {
-		User user = new User();
-		user.setName("Fabio 1");
-		user.setPhone("112335");
-		user.setEmail("fabio@fabio.com");
-		return user;
 	}
 
 }

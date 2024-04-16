@@ -9,20 +9,15 @@ import org.springframework.stereotype.Component;
 import br.fabio.rabbit.UserMessageConfig;
 import br.fabio.rabbit.model.User;
 
+import static br.fabio.rabbit.UserMessageConfig.DIRECT_QUEUE;
+
 @Component
 public class ReceiverListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReceiverListener.class);
 
-	@RabbitListener(queues = UserMessageConfig.queueName)
+	@RabbitListener(queues = DIRECT_QUEUE)
 	public void processMessage(Message message, User object) {
 		LOGGER.info("1::::::::::: >> " + object.getName());
-		LOGGER.info("::::::::::: >> " + object.getPhone());
-		LOGGER.info("::::::::::: >> " + object.getEmail());
-	}
-
-	@RabbitListener(queues = UserMessageConfig.queueName2)
-	public void processMessage2(Message message, User object) {
-		LOGGER.info("2::::::::::: >> " + object.getName());
 		LOGGER.info("::::::::::: >> " + object.getPhone());
 		LOGGER.info("::::::::::: >> " + object.getEmail());
 	}

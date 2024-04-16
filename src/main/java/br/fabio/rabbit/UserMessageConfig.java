@@ -14,28 +14,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Configuration
 public class UserMessageConfig {
-	public static final String topicExchangeName = "fabio-topic-exchange";
-	public static final String queueName = "teste-direct";
-	public static final String queueName2 = "teste-direct2";
-	public static final String biding = "fabio.ampq2.#";
+	public static final String TOPIC_EXCHANGE = "fabio-topic-exchange";
+	public static final String DIRECT_QUEUE = "direct-queue";
+	public static final String BIDING = "fabio.ampq.#";
 
 	@Bean
 	Queue queue() {
-		return new Queue(queueName2, false);
+		return new Queue(DIRECT_QUEUE, false);
 	}
 
 	@Bean
 	TopicExchange exchange() {
-		return new TopicExchange(topicExchangeName);
+		return new TopicExchange(TOPIC_EXCHANGE);
 	}
 
 	@Bean
 	Binding binding() {
-		return BindingBuilder.bind(queue()).to(exchange()).with(biding);
+		return BindingBuilder.bind(queue()).to(exchange()).with(BIDING);
 	}
-	
+
 	@Bean
 	public MessageConverter jsonMessageConverter() {
 		ObjectMapper mapper = new ObjectMapper();

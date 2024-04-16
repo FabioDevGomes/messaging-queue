@@ -16,13 +16,14 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Configuration
 public class UserMessageConfig {
-	public static final String topicExchangeName = "fabio-exchange-b3";
-	public static final String queueName = "teste-direct2";
-	public static final String biding = "fabio.ampq.#";
+	public static final String topicExchangeName = "fabio-topic-exchange";
+	public static final String queueName = "teste-direct";
+	public static final String queueName2 = "teste-direct2";
+	public static final String biding = "fabio.ampq2.#";
 
 	@Bean
 	Queue queue() {
-		return new Queue(queueName, false);
+		return new Queue(queueName2, false);
 	}
 
 	@Bean

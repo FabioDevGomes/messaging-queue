@@ -15,7 +15,14 @@ public class ReceiverListener {
 
 	@RabbitListener(queues = UserMessageConfig.queueName)
 	public void processMessage(Message message, User object) {
-		LOGGER.info("::::::::::: >> " + object.getName());
+		LOGGER.info("1::::::::::: >> " + object.getName());
+		LOGGER.info("::::::::::: >> " + object.getPhone());
+		LOGGER.info("::::::::::: >> " + object.getEmail());
+	}
+
+	@RabbitListener(queues = UserMessageConfig.queueName2)
+	public void processMessage2(Message message, User object) {
+		LOGGER.info("2::::::::::: >> " + object.getName());
 		LOGGER.info("::::::::::: >> " + object.getPhone());
 		LOGGER.info("::::::::::: >> " + object.getEmail());
 	}
